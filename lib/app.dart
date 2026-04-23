@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'models/checkout_args.dart';
+import 'models/category_content_args.dart';
 import 'screens/app_shell.dart';
+import 'screens/category_content_screen.dart';
 import 'screens/checkout_screen.dart';
 import 'screens/profile_screen.dart';
 
@@ -31,6 +33,15 @@ class GlowCartApp extends StatelessWidget {
           if (args is CheckoutArgs) {
             return MaterialPageRoute(
               builder: (context) => CheckoutScreen(args: args),
+            );
+          }
+        }
+
+        if (settings.name == CategoryContentScreen.routeName) {
+          final args = settings.arguments;
+          if (args is CategoryContentArgs) {
+            return MaterialPageRoute(
+              builder: (context) => CategoryContentScreen(args: args),
             );
           }
         }

@@ -26,10 +26,17 @@ void main() {
     expect(find.text('Đồng hồ Nova Fit'), findsOneWidget);
     expect(find.text('Loa Mini Beam'), findsOneWidget);
 
-    // Verify bottom navigation bar exists.
-    expect(find.byIcon(Icons.home_outlined), findsOneWidget);
+    // Verify bottom navigation bar and drawer navigation labels.
+    expect(find.text('Trang chủ'), findsOneWidget);
     expect(find.text('Giỏ hàng'), findsWidgets);
     expect(find.text('Đơn hàng'), findsOneWidget);
+
+    // Open drawer and verify category entry exists.
+    await tester.tap(find.byTooltip('Open navigation menu'));
+    await tester.pumpAndSettle();
+    expect(find.text('Danh mục'), findsOneWidget);
+    await tester.tapAt(const Offset(10, 10));
+    await tester.pumpAndSettle();
 
     // Tap on cart tab and verify cart screen appears.
     await tester.tap(find.text('Giỏ hàng').last);

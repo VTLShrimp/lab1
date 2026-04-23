@@ -7,8 +7,13 @@ import 'profile_screen.dart';
 
 class HomeScreenContent extends StatefulWidget {
   final Function(Product) onAddToCart;
+  final List<Product> products;
 
-  const HomeScreenContent({super.key, required this.onAddToCart});
+  const HomeScreenContent({
+    super.key,
+    required this.onAddToCart,
+    required this.products,
+  });
 
   @override
   State<HomeScreenContent> createState() => _HomeScreenContentState();
@@ -16,30 +21,6 @@ class HomeScreenContent extends StatefulWidget {
 
 class _HomeScreenContentState extends State<HomeScreenContent> {
   String _userName = 'Bạn';
-
-  final List<Product> _products = const [
-    Product(
-      id: 'p1',
-      name: 'Tai nghe Orion X',
-      category: 'Âm thanh',
-      price: 1290000,
-      icon: Icons.headphones_rounded,
-    ),
-    Product(
-      id: 'p2',
-      name: 'Đồng hồ Nova Fit',
-      category: 'Phụ kiện',
-      price: 2190000,
-      icon: Icons.watch_rounded,
-    ),
-    Product(
-      id: 'p3',
-      name: 'Loa Mini Beam',
-      category: 'Smart Home',
-      price: 890000,
-      icon: Icons.speaker_rounded,
-    ),
-  ];
 
   Future<void> _openProfile() async {
     final result = await Navigator.pushNamed(
@@ -104,7 +85,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               'Chạm vào sản phẩm để xem chi tiết hoặc thêm vào giỏ hàng.',
             ),
             const SizedBox(height: 14),
-            ..._products.map(
+            ...widget.products.map(
               (item) => Card(
                 margin: const EdgeInsets.only(bottom: 12),
                 elevation: 0,
